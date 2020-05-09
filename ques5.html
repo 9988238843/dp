@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    h2 {
+      text-align: center;
+      font-size: 3rem;
+      margin-top: 20px;
+      margin-bottom: 50px;
+    }
+
+    #myForm {
+      margin-top: 20px;
+      margin-left: 30%;
+    }
+
+    #text1 {
+      margin-left: 22px;
+    }
+
+    #text2 {
+      margin-left: 30px;
+    }
+
+    .btn {
+      width: 20%;
+      margin-left: 20px color:white;
+    }
+
+    #para {
+      font-size: 22px;
+      margin-bottom: 40px;
+      color: #679b9b;
+    }
+
+    .t2 {
+      margin-top: 10px;
+    }
+
+    .go {
+      margin-left: 12px;
+    }
+
+    .buttons {
+      text-align: center;
+    }
+
+    #proceed {
+      margin-top: 20px;
+      margin-left: 6%;
+    }
+
+    #answer {
+      margin-top: 20px;
+    }
+
+    #mypara {
+      color:#eb6383;
+      text-align: center;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    #bt
+    {
+      width:70px;
+      height: 40px;
+    }
+    h6
+    {
+      color:#eb6383;
+    }
+
+    #mypara1
+    {
+      color:#eb6383;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body style="background-color:#faf4f4">
+  Name -Navjot Singh &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRoll no.-18103061
+  <h2>0/1 Knapsack Problem</h2>
+  <div class="container">
+    <p id="para">
+      Given weights and values of n items, put these items in a knapsack of capacity W to get the maximum total value in the knapsack. In other words, given two integer arrays val[0..n-1] and wt[0..n-1] which represent values and weights associated
+      with n items respectively. Also given an integer W which represents knapsack capacity, find out the maximum value subset of val[] such that sum of the weights of this subset is smaller than or equal to W. You cannot break an item, either pick
+      the complete item, or don’t pick it (0-1 property).
+    </p>
+
+  </div>
+  <div class="buttons">
+    <a href="index.html" class="btn btn-secondary">Go back to Home Page</a>
+    <a href="code5.html" class="btn btn-secondary">Code</a>
+    <a style="color:white;" onclick="reset()" class="btn btn-secondary">Reset</a>
+  </div>
+  <section class="t">
+    <form onsubmit="return add_ques5()" id="myForm" action="index.html" method="post">
+
+      <label for="">Enter weight of item</label>
+      <input id="text1" type="number" name="sequence1" placeholder="Enter single weight"><br>
+
+      <label class="t2" for="">Enter Value of item</label>
+      <input class="t2" id="text2" type="number" name="sequence2" placeholder="Enter respective single value">
+      <button id="bt" style="background-color:grey" class="btn" onclick="add_ques5()" type="button" name="button">Add</button><br />
+
+        <h6>After adding single weights and values press "Add" button and again select further weights and their respective values.</h6>
+
+
+      <label class="t2" for="">Enter Weight of Knapsack</label>
+      <input class="t2" id="text2" type="number" name="sequence3" placeholder="Capacity of Knapsack"><br>
+    </form>
+  </section>
+
+  <div class="buttons">
+    <a onclick="myFunction5_proceed()" id="proceed" class="btn btn-success">Proceed</a>
+  </div>
+
+  <hr size="3" />
+
+  <div id="answer" class="container">
+    <h3>Output : </h3>
+
+    <h3 id="mypara"></h3><br>
+    <h5 id="mypara1"></h5>
+  </div>
+
+  <script type="text/javascript">
+
+    var val = [],
+      wt = [];
+
+    function add_ques5() {
+
+      var weight =parseInt(document.getElementById("myForm").elements.namedItem("sequence1").value);
+      var value = parseInt(document.getElementById("myForm").elements.namedItem("sequence2").value);
+
+      val.push(value);
+      wt.push(weight);
+
+      document.getElementById("myForm").elements.namedItem("sequence1").value="";
+      document.getElementById("myForm").elements.namedItem("sequence2").value="";
+    }
+
+    function myFunction5_proceed()
+    {
+      var W =parseInt(document.getElementById("myForm").elements.namedItem("sequence3").value);
+      var n=val.length,i,j;
+      var dp=[];
+
+      for (i = 0; i <=n; i++)
+      {
+        dp[i]=[];
+        for(j=0;j<=W;j++)
+        {
+          dp[i][j]=0;
+        }
+      }
+
+
+      for(i=0;i<=n;i++)
+      {
+        for(j=0;j<=W;j++)
+        {
+          if (i==0 || j==0)
+               dp[i][j] = 0;
+           else if (wt[i-1] <= j)
+                 dp[i][j] = Math.max(val[i-1] + dp[i-1][j-wt[i-1]],  dp[i-1][j]);
+           else
+                 dp[i][j] = dp[i-1][j];
+        }
+      }
+
+      document.getElementById('mypara').innerHTML="Solution : " + dp[n][W];
+        document.getElementById('mypara1').innerHTML="TIME COMPLEXITY :  O(N * W) <br> SPACE COMPLEXITY : O(N * W)<br> N : Number of Items <br> W : Weight of Knapsack";
+    }
+
+
+
+    function reset()
+    {
+      document.getElementById("myForm").reset();
+      document.querySelector("#mypara").innerHTML=" ";
+    }
+  </script>
+</body>
+
+</html>

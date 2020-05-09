@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+      h2
+      {
+        text-align:center;
+        font-size:3rem;
+        margin-top:20px;
+      }
+
+      .t
+      {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      #text1
+      {
+        margin-left:52.5px
+      }
+
+      #text2
+      {
+        margin-left:30px;
+      }
+
+      .btn
+      {
+        width:20%;
+        margin-left:20px
+        color:white;
+      }
+      #para
+      {
+        font-size:22px;
+        margin-bottom:40px;
+        color:#679b9b;
+      }
+
+      .t2
+      {
+        margin-top: 10px;
+      }
+
+      .go
+      {
+        margin-left: 12px;
+      }
+
+      .buttons
+      {
+        text-align: center;
+      }
+      #proceed
+      {
+        margin-top: 20px;
+        margin-left: 15%;
+      }
+
+      #answer
+      {
+        margin-top: 20px;
+      }
+
+      #mypara
+      {
+        color:#eb6383;
+        text-align:center;
+        font-size: 20px;
+      }
+      #mypara1
+      {
+        color:#eb6383;
+        text-align:center;
+      }
+
+    </style>
+  </head>
+  <body style="background-color:#faf4f4">
+    Name -Navjot Singh &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRoll no.-18103061
+    <h2>Longest Common Subsequence</h2>
+    <div class="container">
+      <p id="para">
+        Problem Statement: Given two sequences, find the length of longest subsequence present in both of them. A subsequence is a sequence that appears in the same relative order, but not necessarily contiguous.
+        </p>
+
+    </div>
+    <div class="buttons">
+      <a href="index.html" class="btn btn-secondary">Go back to Home Page</a>
+      <a href="code4.html" class="btn btn-secondary">Code</a>
+      <a style="color:white;" onclick="reset()" class="btn btn-secondary">Reset</a>
+    </div>
+    <section class="t">
+      <form id="myForm" action="index.html" method="post">
+        <label  for="">Enter First Sequence</label>
+        <input  id="text1"type="text" name="sequence1" placeholder="Enter String 1"><br>
+
+        <label  class="t2" for="">Enter Second Sequence</label>
+        <input  class="t2" id="text2" type="text" name="sequence2" placeholder="Enter String 2"><br>
+
+      </form>
+    </section>
+
+    <div class="buttons">
+      <a  onclick="myFunction4_proceed()" id="proceed" class="btn btn-success">Proceed</a>
+    </div>
+
+    <hr size="3" />
+
+  <div id="answer" class="container">
+    <h3>Output : </h3>
+
+    <h3 id="mypara"></h3>
+    <h5 id="mypara1"></h5>
+  </div>
+
+    <script src="index.js" charset="utf-8"></script>
+  </body>
+</html>

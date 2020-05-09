@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    h2 {
+      text-align: center;
+      font-size: 3rem;
+      margin-top: 20px;
+      margin-bottom: 50px;
+    }
+
+    .t {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    #text1 {
+      margin-left: 52.5px
+    }
+
+    #text2 {
+      margin-left: 30px;
+    }
+
+    .btn {
+      width: 20%;
+      margin-left: 20px color:white;
+    }
+
+    #para {
+      font-size: 22px;
+      margin-bottom: 40px;
+      color: #679b9b;
+    }
+
+    .t2 {
+      margin-top: 10px;
+    }
+
+    .go {
+      margin-left: 12px;
+    }
+
+    .buttons {
+      text-align: center;
+    }
+
+    #proceed {
+      margin-left: -40px;
+      margin-top: 30px;
+    }
+
+    #answer {
+      margin-top: 20px;
+    }
+
+    #mypara {
+        color:#eb6383;
+      font-size: 20px;
+    }
+
+    #bt1 {
+      width=20px;
+    }
+
+    #hell {
+      margin-right: 90px;
+    }
+  </style>
+</head>
+
+<body style="background-color:#faf4f4">
+  Name -Navjot Singh &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRoll no.-18103061
+  <h2>All Pairs Shortest Path</h2>
+  <div class="container">
+    <p id="para">
+      The Floyd Warshall Algorithm is for solving the All Pairs Shortest Path problem. The problem is to find shortest distances between every pair of vertices in a given edge weighted directed Graph.
+    </p>
+
+  </div>
+  <div class="buttons">
+    <a href="index.html" class="btn btn-secondary">Go back to Home Page</a>
+    <a href="code1.html" class="btn btn-secondary">Code</a>
+    <a style="color:white;" onclick="reset()" class="btn btn-secondary">Reset</a>
+  </div>
+  <section class="t">
+    <form id="myForm" action="index.html" method="post">
+      <label id="hell" for="">Enter the number of vertices </label><br />
+      <input type="number" id="sequence1" name="sequence1" value="">
+      <button onclick="add_vertices()" class="btn btn-secondary" style="width:55px;" type="button" name="button">Add</button><br />
+      <br />
+      <label id="t1" for="">Source&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+      <label for="">Destination&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+      <label for="">Weight&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label><br />
+      <input type="number" id="sequence2" name="sequence2" value="">
+      <input type="number" id="sequence3" name="sequence3" value="">
+      <input type="number" id="sequence4" name="sequence4" value="">
+      <button onclick="add_element_to_array()" class="btn btn-secondary" style="width:55px;" type="button" name="button">Add</button>
+
+    </form>
+  </section>
+
+  <div class="buttons">
+    <a onclick="myFunction1_proceed()" id="proceed" class="btn btn-success">Proceed</a>
+  </div>
+
+  <hr size="3" />
+
+  <div id="answer" class="container">
+    <h3>Output : </h3>
+
+    <h2 id="mypara"></h2>
+    <h2 class="mypara"></h2>
+  </div>
+
+  <script type="text/javascript">
+
+    function reset() {
+      document.getElementById("myForm").reset();
+      document.querySelector("#mypara").innerHTML = " ";
+      document.querySelector("#sequence1").placeholder = " ";
+      document.querySelector("#sequence2").placeholder = " ";
+      document.querySelector("#sequence3").placeholder = " ";
+      document.querySelector("#sequence4").placeholder = " ";
+    }
+
+    var n;
+    var arr = new Array(1000);
+    function add_vertices()
+    {
+      n=parseInt(document.getElementById("sequence1").value);
+       document.getElementById("sequence1").value = "";
+       document.getElementById("sequence1").placeholder = "Successfully Added!";
+
+  // var arr = new Array(n);
+  for(var i=0;i<n;i++)
+  {
+    arr[i]=new Array(n);
+  }
+  for(var i=0;i<n;i++)
+  {
+    for(var j=0;j<n;j++)
+    {
+      if(i==j)
+      arr[i][j]=0;
+      else{
+        arr[i][j]=Infinity;
+      }
+    }
+  }
+  }
+  var fir,sec,weight;
+  function add_element_to_array()
+  {
+   fir=parseInt(document.getElementById("sequence2").value);
+   sec=parseInt(document.getElementById("sequence3").value);
+   weight=parseInt(document.getElementById("sequence4").value);
+     arr[fir][sec]=weight;
+      document.getElementById("sequence2").value = "";
+       document.getElementById("sequence3").value = "";
+        document.getElementById("sequence4").value = "";
+       document.getElementById("sequence2").placeholder = "Successfully Added!";
+       document.getElementById("sequence3").placeholder = "Successfully Added!";
+       document.getElementById("sequence4").placeholder = "Successfully Added!";
+  }
+
+
+
+  function myFunction1_proceed()
+  {
+
+      var dist=new Array(1000);
+      for(var i=0;i<n;i++)
+        dist[i]=new Array(1000);
+       var i;
+       var j;
+       var k;
+      for (i = 0; i < n; i++)
+       for (j = 0; j < n; j++)
+           dist[i][j] = arr[i][j];
+
+           for (k = 0; k < n; k++)
+            {
+                for (i = 0; i < n; i++)
+                {
+                    for (j = 0; j < n; j++)
+                    {
+                        if (dist[i][k] + dist[k][j] < dist[i][j])
+                            dist[i][j] = dist[i][k] + dist[k][j];
+                    }
+                }
+            }
+
+     var e = "";
+
+     e+="SHORTEST DISTANCE BETWEEN EVERY PAIR "+"<br />"
+
+  for(var i=0;i<n;i++)
+  {
+  for(var j=0;j<n;j++)
+  {
+     if(dist[i][j]==Infinity)
+     e += "INF &nbsp&nbsp&nbsp";
+     else {
+       e +=dist[i][j] + "&nbsp&nbsp&nbsp";
+     }
+
+  }
+  e +="<br>";
+
+  }
+  e+="TIME COMPLEXITY = O(N^3)"+"<br/>";
+  e+="AUXILIARY SPACE : O(N^2)";
+  document.getElementById("mypara").innerHTML = e;
+  }
+  </script>
+</body>
+
+</html>

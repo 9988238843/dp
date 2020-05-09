@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  </head>
+  <body style="background-color:#faf4f4">
+
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 style="font-style:'Montserrat';">C++ &nbspCode</h2>
+        </div>
+        <div class="col-lg-6">
+          <a class="btn btn-secondary" href="ques5.html">Go Back</a>
+          </div>
+      </div>
+    <div style="margin-left:25px; margin-top:30px;">
+      #include<iostream> <br>
+  using namespace std;<br>
+   <br>
+  int max(int a, int b) { return (a > b)? a : b; } <br>
+  <br>
+  int knapSack(int W, int wt[], int val[], int n) <br>
+  { <br>
+  int i, w; <br>
+  int K[n+1][W+1];<br>
+  <br>
+  for (i = 0; i <= n; i++) <br>
+  { <br>
+  	for (w = 0; w <= W; w++) <br>
+  	{ <br>
+  		if (i==0 || w==0) <br>
+  			K[i][w] = 0; <br>
+  		else if (wt[i-1] <= w)<br>
+  				K[i][w] = max(val[i-1] + K[i-1][w-wt[i-1]], K[i-1][w]); <br>
+  		else<br>
+  				K[i][w] = K[i-1][w]; <br>
+  	} <br>
+  } <br>
+  <br>
+  return K[n][W]; <br>
+  } <br>
+  <br>
+  int main() <br>
+  { <br>
+      int val[10],wt[10],W,n;V
+      <br>
+      cout<<"Enter total items : ";<br>
+      cin>>n;<br>
+      <br>
+      for(i=0;i<n;i++)<br>
+      {<br>
+          cout<<"Enter weight of item  "<<i+1<<" : ";<br>
+          cin>>wt[i];<br>
+          <br>
+          cout<<"Enter value of item  "<<i+1<<" : ";<br>
+          cin>>val[i];<br>
+      }<br>
+      <br>
+      cout<<endl<<"Enter total size of Knapsack  :  ";<br>
+      cin>>W;<br>
+      cout<<knapSack(W, wt, val, n);<br>
+  } <br>
+
+      </div>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  </head>
+  <body style="background-color:#faf4f4">
+
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 style="font-style:'Montserrat';">C++ &nbspCode</h2>
+        </div>
+        <div class="col-lg-6">
+          <a class="btn btn-secondary" href="ques3.html">Go Back</a>
+          </div>
+      </div>
+    <div style="margin-left:25px; margin-top:30px;">
+      #include<bits/stdc++.h> <br>
+  using namespace std; <br>
+    <br>
+  int MatrixChainOrder(int p[], int n) <br>
+  { <br>
+      int m[n][n]; <br>
+      int i, j, k, L, q; <br>
+    <br>
+      for (i = 1; i < n; i++) <br>
+          m[i][i] = 0; <br>
+    <br>
+      for (L = 2; L < n; L++) <br>
+      { <br>
+          for (i = 1; i < n - L + 1; i++) <br>
+          { <br>
+              j = i + L - 1; <br>
+              m[i][j] = INT_MAX; <br>
+              for (k = i; k <= j - 1; k++) <br>
+              { <br>
+                  q = m[i][k] + m[k + 1][j] +  <br>
+                      p[i - 1] * p[k] * p[j]; <br>
+                  if (q < m[i][j]) <br>
+                      m[i][j] = q; <br>
+              } <br>
+          } <br>
+      } <br>
+    <br>
+      return m[1][n - 1]; <br>
+  } <br>
+    <br>
+  int main() <br>
+  {<br>
+      int arr[] = {1, 2, 3, 4}; <br>
+      int size = sizeof(arr) / sizeof(arr[0]); <br>
+    <br>
+      cout << "Minimum number of multiplications is "<br>
+           << MatrixChainOrder(arr, size); <br>
+    <br>
+      getchar();<br>
+      return 0; <br>
+  } <br>
+  <br>
+
+      </div>
+  </body>
+</html>

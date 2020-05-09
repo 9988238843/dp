@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Assembly Line Scheduling</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <style>
+    h2 {
+      text-align: center;
+      font-size: 3rem;
+      margin-top: 20px;
+      margin-bottom: 50px;
+    }
+
+    .t {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .btn {
+      width: 20%;
+      margin-left: 20px color:white;
+    }
+
+    #para {
+      font-size: 22px;
+      margin-bottom: 40px;
+      color: #679b9b;
+    }
+
+    .t2 {
+      margin-top: 10px;
+    }
+
+    .go {
+      margin-left: 12px;
+    }
+
+    .buttons {
+      text-align: center;
+    }
+
+    #proceed {
+      margin-top: 20px;
+
+    }
+
+    #answer {
+      margin-top: 20px;
+    }
+
+    #mypara {
+      color:#eb6383;
+      font-size: 20px;
+    }
+
+    body {
+      background-color: #faf4f4;
+    }
+
+    .btno
+    {
+      width:60px;
+    }
+    #Result
+    {
+        color:#eb6383;
+        font-size: 20px;
+        text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+Name -Navjot Singh &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRoll no.-18103061
+  <body style="background-color:#faf4f4">
+    <h2>Assembly-line Scheduling</h2>
+    <div class="container">
+
+    </div>
+    <div class="buttons">
+      <a href="index.html" class="btn btn-secondary">Go back to Home Page</a>
+      <a href="code2.html" class="btn btn-secondary">Code</a>
+      <a style="color:white;" onclick="reset()" class="btn btn-secondary">Reset</a>
+    </div>
+    <section class="t">
+      <form id="myForm" action="index.html" method="post">
+        <label style="margin-top:30px;">ENTER THE NUMBER OF STATIONS AT EACH ASSEMBLY LINE</label><br>
+        <input type="text" id="text1" placeholder="Enter N"></input>
+        <input type="button" class="btn btn-secondary btno" id="button1" value="ADD" onClick="add_stations()"></input><br><br>
+        <label>ENTER THE TIME TAKEN AT EACH STATION <br>(First Enter For First Line And Then For Second) </label><br>
+        <input type="text" placeholder="Separated By space " id="text2"></input>
+        <input type="button" class="btn btn-secondary btno" id="button2" value="ADD" onClick="add_time_taken()"></input><br><br>
+        <label>ENTER THE TRANSFER TIME OF EACH STATION <br>(First Enter For First Line And Then For Second)</label><br>
+        <input type="text" placeholder="Separated By space " id="text3"></input>
+        <input type="button" id="button3" class="btn btn-secondary btno" value="ADD" onClick="add_transfer()"></input><br><br>
+        <label>ENTER THE ENTRY TIME OF EACH ASSEMBLY LINE </label><br>
+        <input type="text" name="" placeholder="Separated By Space" id="text4"></input>
+        <input type="button" id="button4" class="btn btn-secondary btno" value="ADD" onClick="add_entry()"></input><br><br>
+        <label>ENTER THE EXIT TIME OF EACH ASSEMBLY LINE</label><br>
+        <input type="text" name="" placeholder="Separated By Space" id="text5"></input>
+        <input type="button" class="btn btn-secondary btno" id="button5" value="ADD" onClick="add_exit()"></input> <br><br>
+      </form>
+    </section>
+
+    <div class="buttons">
+      <a onClick="display_array()" id="proceed" class="btn btn-success">Proceed</a>
+    </div>
+
+    <hr size="3" />
+
+    <div id="Result"></div>
+
+    <script type="text/javascript">
+      var n;
+      var a = new Array(100);
+      var t = new Array(100);
+      var e = new Array(100);
+      var x = new Array(100);
+
+      function add_stations() {
+        n = parseInt(document.getElementById("text1").value);
+        document.getElementById("text1").value = "";
+        document.getElementById("text1").placeholder = "Successfully Added!";
+        for (var i = 0; i < n; i++) {
+          a[i] = new Array(n);
+          t[i] = new Array(n);
+        }
+
+      }
+      var y = 0;
+
+      function add_time_taken() {
+        var list = document.getElementById("text2").value;
+        var list1 = list.split(" ");
+        for (var i = 0; i < n; i++) {
+          a[y][i] = Number(list1[i]);
+        }
+        y++;
+        document.getElementById("text2").value = "";
+        document.getElementById("text2").placeholder = "Successfully Added!";
+      }
+
+      var z = 0;
+
+      function add_transfer() {
+        var list = document.getElementById("text3").value;
+        var list1 = list.split(" ");
+        for (var i = 0; i < n; i++) {
+          t[z][i] = Number(list1[i]);
+        }
+        z++;
+        document.getElementById("text3").value = "";
+        document.getElementById("text3").placeholder = "Successfully Added!";
+      }
+
+      function add_entry() {
+        var list = document.getElementById("text4").value;
+        var list1 = list.split(" ");
+        for (var i = 0; i < list1.length; i++) {
+          e[i] = Number(list1[i]);
+        }
+        document.getElementById("text4").value = "";
+        document.getElementById("text4").placeholder = "Successfully Added!";
+      }
+
+      function add_exit() {
+        var list = document.getElementById("text5").value;
+        var list1 = list.split(" ");
+        for (var i = 0; i < list1.length; i++) {
+          x[i] = Number(list1[i]);
+        }
+        document.getElementById("text5").value = "";
+        document.getElementById("text5").placeholder = "Successfully Added!";
+      }
+
+
+      function display_array() {
+
+
+        var first = e[0] + a[0][0];
+
+        var up, down;
+        var second = e[1] + a[1][0];
+        console.log(first);
+        console.log(second);
+        for (var i = 1; i < n; i++) {
+          up = first + a[0][i] < second + t[1][i] + a[0][i] ? first + a[0][i] : second + t[1][i] + a[0][i];
+          down = second + a[1][i] < first + t[0][i] + a[1][i] ? second + a[1][i] : first + t[0][i] + a[1][i];
+          first = up;
+          second = down;
+          console.log(first);
+          console.log(second);
+        }
+
+        first += x[0];
+        second += x[1];
+
+        var result = first < second ? first : second;
+
+        var res = "<hr/>";
+        res += "MINIMUM TIME TO BUILD A CAR CHASSIS  : " + result + "<br>";
+        res += "TIME COMPLEXITY : O(N) <br>";
+        res += "AUXILIARY SPACE : O(1) <br>";
+        res += "N : NUMBER OF STATIONS"
+        document.getElementById("Result").innerHTML = res;
+      }
+    </script>
+
+  </body>
+
+</html>

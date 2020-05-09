@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    h2 {
+      text-align: center;
+      font-size: 3rem;
+      margin-top: 20px;
+      margin-bottom: 50px;
+    }
+
+    .t {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    #text1 {
+      margin-left: 52.5px
+    }
+
+    #text2 {
+      margin-left: 30px;
+    }
+
+    .btn {
+      width: 20%;
+      margin-left: 20px color:white;
+    }
+
+    #para {
+      font-size: 22px;
+      margin-bottom: 40px;
+      color: #679b9b;
+    }
+
+    .t2 {
+      margin-top: 10px;
+    }
+
+    .go {
+      margin-left: 12px;
+    }
+
+    .buttons {
+      text-align: center;
+    }
+
+    #proceed {
+      margin-top: 20px;
+    }
+
+    #answer {
+      margin-top: 20px;
+    }
+
+    #mypara {
+      color:#eb6383;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    #mypara1
+    {
+      color:#eb6383;
+      font-size: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body style="background-color:#faf4f4">
+  Name -Navjot Singh &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRoll no.-18103061
+  <h2>Matrix Chain Multiplication</h2>
+  <div class="container">
+    <p id="para">
+      Given a sequence of matrices, find the most efficient way to multiply these matrices together. The problem is not actually to perform the multiplications, but merely to decide in which order to perform the multiplications.
+
+      We have many options to multiply a chain of matrices because matrix multiplication is associative. In other words, no matter how we parenthesize the product, the result will be the same.
+    </p>
+
+  </div>
+  <div class="buttons">
+    <a href="index.html" class="btn btn-secondary">Go back to Home Page</a>
+    <a href="code3.html" class="btn btn-secondary">Code</a>
+    <a style="color:white;" onclick="reset()" class="btn btn-secondary">Reset</a>
+  </div>
+  <section class="t">
+    <form id="myForm" action="index.html" method="post">
+      <label style="color:#eb6383;"for="">Enter single array element at one time and to include that element in array press "Add" button</label><br />
+      <input id="text1" type="number" name="sequence1" placeholder="Enter array element">
+      <button onclick="add_element()" style="width:65px;" class="btn btn-secondary" type="button" name="button">Add</button>
+
+    </form>
+  </section>
+
+  <div class="buttons">
+    <a onclick="myFunction3_proceed()" id="proceed" class="btn btn-success">Proceed</a>
+  </div>
+
+  <hr size="3" />
+
+  <div id="answer" class="container">
+    <h3>Output : </h3>
+
+    <h3 id="mypara"></h3><br>
+    <h5 id="mypara1"></h5>
+  </div>
+
+  <script type="text/javascript">
+
+    var arr = [];
+
+    function add_element() {
+      var p = parseInt(document.getElementById("text1").value);
+      arr.push(p);
+      reset();
+    }
+
+    function reset() {
+      document.getElementById("myForm").reset();
+      document.querySelector("#mypara").innerHTML = " ";
+    }
+
+    function myFunction3_proceed() {
+      var i, j, k, h, q;
+
+      var n = parseInt(arr.length);
+
+      var m = new Array(n);
+
+      for (i = 0; i < n; i++) {
+        m[i] = new Array(n);
+      }
+
+      for (i = 0; i < n; i++) {
+        m[i][i] = 0;
+      }
+
+      for (h = 2; h < n; h++)
+      {
+        for (i = 1; i < n - h + 1; i++)
+        {
+          j = i + h - 1;
+          m[i][j] =99999;
+          for (k = i; k <= j - 1; k++)
+          {
+            q = m[i][k] + m[k + 1][j] +
+              (arr[i - 1] * arr[k] * arr[j]);
+            if (q < m[i][j])
+              m[i][j] = q;
+          }
+        }
+      }
+
+
+      document.getElementById('mypara').innerHTML = "Solution : " + m[1][n-1];
+      document.getElementById('mypara1').innerHTML = "TIME COMPLEXITY  : 0(N^3)<br /> SPACE COMPLEXITY : O(N^2) ";
+
+    }
+  </script>
+</body>
+
+</html>

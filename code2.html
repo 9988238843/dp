@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  </head>
+  <body style="background-color:#faf4f4">
+
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 style="font-style:'Montserrat';">C++ &nbspCode</h2>
+        </div>
+        <div class="col-lg-6">
+          <a class="btn btn-secondary" href="ques2.html">Go Back</a>
+          </div>
+      </div>
+    <div style="margin-left:25px; margin-top:30px;">
+      #include <bits/stdc++.h> <br>
+  using namespace std;  <br>
+  #define NUM_LINE 2   <br>
+  #define NUM_STATION 4   <br>
+                                         <br>
+  int min(int a, int b)                                        <br>
+  {                                         <br>
+      return a < b ? a : b;                                         <br>
+  }                                         <br>
+                                           <br>
+  int carAssembly(int a[][NUM_STATION],                                         <br>
+                  int t[][NUM_STATION],                                         <br>
+                  int *e, int *x)                                         <br>
+  {                                         <br>
+      int T1[NUM_STATION], T2[NUM_STATION], i;                                         <br>
+                                           <br>
+      T1[0] = e[0] + a[0][0];                                         <br>
+                                               <br>
+      T2[0] = e[1] + a[1][0];                                         <br>
+                                           <br>
+      for (i = 1; i < NUM_STATION; ++i)                                         <br>
+      {                                         <br>
+          T1[i] = min(T1[i - 1] + a[0][i],                                         <br>
+                      T2[i - 1] + t[1][i] + a[0][i]);                                         <br>
+          T2[i] = min(T2[i - 1] + a[1][i],                                        <br>
+                      T1[i - 1] + t[0][i] + a[1][i]);                                         <br>
+      }                                         <br>
+                                           <br>
+      return min(T1[NUM_STATION - 1] + x[0],                                         <br>
+                 T2[NUM_STATION - 1] + x[1]);                                         <br>
+  }                                         <br>
+                                         <br>
+  {                                         <br>
+      int a[][NUM_STATION] = {{4, 5, 3, 2},                                         <br>
+                              {2, 10, 1, 4}};                                         <br>
+      int t[][NUM_STATION] = {{0, 7, 4, 5},                                         <br>
+                              {0, 9, 2, 8}};                                         <br>
+      int e[] = {10, 12}, x[] = {18, 7};                                         <br>
+                                           <br>
+      cout << carAssembly(a, t, e, x);                                         <br>
+                                           <br>
+      return 0;                                         <br>
+  }                                         <br>
+                                         <br>
+
+      </div>
+  </body>
+</html>

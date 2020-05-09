@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  </head>
+  <body style="background-color:#faf4f4">
+
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 style="font-style:'Montserrat';">C++ &nbspCode</h2>
+        </div>
+        <div class="col-lg-6">
+          <a class="btn btn-secondary" href="ques1.html">Go Back</a>
+          </div>
+      </div>
+    <div style="margin-left:25px; margin-top:30px;">
+      #include <bits/stdc++.h><br>
+      using namespace std;<br>
+      <br>
+      #define V 4<br>
+      #define INF 99999<br>
+      <br>
+      void printSolution(int dist[][V]);<br>
+      <br>
+      void floydWarshall (int graph[][V])<br>
+      {<br>
+      	int dist[V][V], i, j, k;<br>
+      	for (i = 0; i < V; i++)<br>
+      		for (j = 0; j < V; j++)<br>
+      			dist[i][j] = graph[i][j];<br>
+      <br>
+      	for (k = 0; k < V; k++)<br>
+      	{<br>
+      		for (i = 0; i < V; i++)<br>
+      		{<br>
+      			for (j = 0; j < V; j++)<br>
+      			{<br>
+      				if (dist[i][k] + dist[k][j] < dist[i][j])<br>
+      					dist[i][j] = dist[i][k] + dist[k][j];<br>
+      			}<br>
+      		}<br>
+      	}<br>
+      <br>
+      	printSolution(dist);<br>
+      }<br>
+      <br>
+      void printSolution(int dist[][V])<br>
+      {<br>
+      	cout<<"The following matrix shows the shortest distances"<br>
+      			" between every pair of vertices \n";<br>
+      	for (int i = 0; i < V; i++)<br>
+      	{<br>
+      		for (int j = 0; j < V; j++)<br>
+      		{<br>
+      			if (dist[i][j] == INF)<br>
+      				cout<<"INF"<<"	 ";<br>
+      			else<br>
+      				cout<<dist[i][j]<<"	 ";<br>
+      		}<br>
+      		cout<<endl;<br>
+      	}<br>
+      }<br>
+      <br>
+      int main()<br>
+      {<br>
+      <br>
+      	int graph[V][V] = { {0, 5, INF, 10},<br>
+      &nbsp&nbsp&nbsp&nbsp&nbsp{INF, 0, 3, INF},<br>
+      &nbsp&nbsp&nbsp&nbsp&nbsp{INF, INF, 0, 1},<br>
+      &nbsp&nbsp&nbsp&nbsp&nbsp{INF, INF, INF, 0}<br>
+      					};<br>
+      	floydWarshall(graph);<br>
+      	return 0;<br>
+      }<br>
+      <br>
+
+      </div>
+  </body>
+</html>
